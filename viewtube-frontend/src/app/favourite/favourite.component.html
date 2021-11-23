@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <title>Document</title> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <nav class="navbar sticky-top navbar-light bg-light justify-content-between">
+    <h1 (click)="getHome()" style="cursor: pointer;">Viewtube</h1>
+    <form class="form-inline">
+      <li class="nav-item dropdown">
+        <a   id="dropdownMenuButton1" class="nav-link dropdown-toggle" data-toggle="dropdown"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        >
+        <fa-icon [icon]="faUser" style="position: relative;margin-left: 10px;"></fa-icon></a>
+        <div class="dropdown-menu"   aria-labelledby="dropdownMenuButton1"
+        style="cursor: pointer;">
+            
+        <a (click)="userprofile()" class="dropdown-item">User Profile</a>
+        <a (click)="resetPassword()" class="dropdown-item">Reset Password</a>
+        <a (click)="logout()" class="dropdown-item">Logout</a>
+            
+        </div>
+    </li> 
+   
+    </form>
+  </nav>
+
+<div class="wrapper">
+  <!-- <app-side-bar></app-side-bar> -->
+  <div class="sidebar">
+   <!-- <h2>menu</h2> -->
+   <ul>
+     <li>
+       <a href="/home"><i class="fas fa-home"></i>Home</a>
+     </li>
+    
+   </ul>
+  </div>
+  <div class="main_content">
+    <div class="row">
+      <ul *ngFor="let videos of videoData">
+        <app-video-section
+          [isFav]=true
+          [thumbnail]="videos.thumbnail"
+          [videoTitle]="videos.videoTitle"
+          [channelTitle]="videos.channelTitle"
+          [videoId]="videos.videoId"
+        ></app-video-section>
+      </ul>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+  
+
+<!-- <div class="row"> -->
+ 
+<!-- </div> -->

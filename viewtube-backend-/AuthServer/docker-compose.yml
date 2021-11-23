@@ -1,0 +1,29 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+   sqlserver:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    ports: 
+      - 1433:1433
+    environment: 
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssw0rd
+      - MSSQL_PID=Express 
+   authservercontainer:
+    image: niraj2998/viewtube-authentication-service
+    ports:
+      - 5000:80
+    environment: 
+      - SQLSERVER_Auth=Server=sqlserver;Database=UserDb;User Id=SA;Password=P@ssw0rd;Trusted_Connection=True;Integrated Security=False
+   favvideoscontainer:
+    image: niraj2998/viewtube-fav-service
+    ports:
+      - 5001:80
+    environment: 
+      - SQLSERVER_Auth=Server=sqlserver;Database=FavVideosDb;User Id=SA;Password=P@ssw0rd;Trusted_Connection=True;Integrated Security=False
+   angularcontainer:
+    image: niraj2998/viewtube-frontend
+    ports:
+      - 4200:80
